@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class FireballPenetration implements Listener {
     public static boolean EnableFireballPenetration = true;
     public static boolean UnderwaterFireballPenetration = true;
+    public static double resistancePercent = 90;
 
     public static void load(@NotNull FileConfiguration config) {
         EnableFireballPenetration = config.getBoolean("EnableFireballPenetration", false);
@@ -33,6 +34,7 @@ public class FireballPenetration implements Listener {
         if (e.getIgnitingEntity() == null)
             return;
 
+
         Block sourceBlock = e.getBlock();
         Block testBlock = sourceBlock.getRelative(BlockFace.EAST);
         if (!testBlock.getType().isBurnable())
@@ -44,6 +46,22 @@ public class FireballPenetration implements Listener {
         if (!testBlock.getType().isBurnable())
             return;
 
+
+        // check if the source block is among the list of higher resistance blocks
+        if (isResistant(testBlock)) {
+            if (Math.random() * 100 >= resistancePercent) {
+                // To prevent infinite recursion we call the event with SPREAD as the cause
+                BlockIgniteEvent igniteEvent = new BlockIgniteEvent(testBlock, BlockIgniteEvent.IgniteCause.SPREAD, e.getIgnitingEntity());
+                Bukkit.getPluginManager().callEvent(igniteEvent);
+                if (igniteEvent.isCancelled())
+                    return;
+                // chance to break sourceBlock based on resistancePercent
+                testBlock.setType(Material.AIR);
+            }
+            return;
+        }
+
+
         // To prevent infinite recursion we call the event with SPREAD as the cause
         BlockIgniteEvent igniteEvent = new BlockIgniteEvent(testBlock, BlockIgniteEvent.IgniteCause.SPREAD, e.getIgnitingEntity());
         Bukkit.getPluginManager().callEvent(igniteEvent);
@@ -51,6 +69,7 @@ public class FireballPenetration implements Listener {
             return;
 
         testBlock.setType(Material.AIR);
+
     }
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
@@ -76,4 +95,10 @@ public class FireballPenetration implements Listener {
 
         sourceBlock.setType(Material.AIR);
     }
+
+    public static boolean isResistant(Block sourceBlock) {
+        return sourceBlock.getType().toString().endsWith("WOOL");
+    }
+
+
 }
