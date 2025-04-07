@@ -17,11 +17,13 @@ import java.util.LinkedList;
 public class FireballLifespan extends BukkitRunnable implements Listener {
     private static final String METADATA_KEY = "MCC-Expiry";
     public static int FireballLifespan = 0;
+    public static int FireballSpeedFactor = 1;
     private final Deque<SmallFireball> queue = new LinkedList<>();
 
     public static void load(@NotNull FileConfiguration config) {
         FireballLifespan = config.getInt("FireballLifespan", 6);
         FireballLifespan *= 20 * 50; // Convert from seconds to milliseconds
+        FireballSpeedFactor = config.getInt("FireballSpeedFactor", 2);
     }
 
     @Override
@@ -44,6 +46,10 @@ public class FireballLifespan extends BukkitRunnable implements Listener {
 
         SmallFireball fireball = (SmallFireball) e.getEntity();
         fireball.setMetadata(METADATA_KEY, new FixedMetadataValue(MovecraftCombat.getInstance(), System.currentTimeMillis()));
+
+        //multiply velocity by the amount provided by config
+        fireball.setVelocity(fireball.getVelocity().multiply(FireballSpeedFactor));
         queue.add(fireball);
     }
+
 }

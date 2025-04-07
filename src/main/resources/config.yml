@@ -75,6 +75,7 @@ EnableAntiRadar: false # Enable invisibility for craft pilots to nullify minimap
 EnableFireballPenetration: false # Randomly replace blocks with fire when they are struck by fireballs.
 UnderwaterFireballPenetration: false # Allow fireballs to damage flammable blocks underwater.
 AddFiresToHitbox: true # Add fires lit on the surface of a craft to its hitbox so they don't obstruct it.
+FireballSpeedFactor: 2 # Factor by which all fireball velocity is multiplied by
 
 # Arrow Behavior
 EnableArrowPenetration: false # Randomly break blocks when they are struck by arrows.
