@@ -129,6 +129,7 @@ public final class MovecraftCombat extends JavaPlugin {
         fireballLifespan.runTaskTimer(this, 0, 20); // Every 1 second
         getServer().getPluginManager().registerEvents(new FireballLifespan(), this);
         getServer().getPluginManager().registerEvents(new FireballPenetration(), this);
+        getServer().getPluginManager().registerEvents(new ArrowPenetration(), this);
         getServer().getPluginManager().registerEvents(new ReImplementTNTTranslocation(), this);
 
 
