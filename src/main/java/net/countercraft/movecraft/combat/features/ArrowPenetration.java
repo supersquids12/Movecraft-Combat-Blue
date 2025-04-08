@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.AbstractArrow;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,12 +13,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class ArrowPenetration implements Listener {
     public static boolean EnableArrowPenetration = true;
-    public static boolean UnderwaterArrowPenetration = true;
     public static double resistancePercent = 90;
+    public static boolean EnablePlayerArrowBehavior = false;
 
     public static void load(@NotNull FileConfiguration config) {
         EnableArrowPenetration = config.getBoolean("EnableArrowPenetration", false);
-        UnderwaterArrowPenetration = config.getBoolean("UnderwaterArrowPenetration", false);
+        EnablePlayerArrowBehavior = config.getBoolean("EnablePlayerArrowBehavior", false);
     }
 
 
@@ -30,6 +31,14 @@ public class ArrowPenetration implements Listener {
 
         if (e.getHitBlock() == null )
             return;
+
+        /*
+        // Enables/Disables whether arrows fired from a player act the same as if fired from a dispenser
+        if (e.getEntity().getShooter() instanceof Player) {
+            if (!EnablePlayerArrowBehavior)
+                return;
+        }
+        */
 
         Block sourceBlock = e.getHitBlock();
 

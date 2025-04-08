@@ -40,6 +40,13 @@ DurabilityOverride: # List of block IDs: ignore percent
 
 # Fireball Lifespan
 FireballLifespan: 6 # Lifespan of fireballs in seconds
+FireballSpeedFactor: 2 # Factor by which all fireballs have their velocity multiplied by
+
+# Arrow Lifespan
+ArrowLifespan: 6 # Lifespan of arrows in seconds
+ArrowSpeedFactor: 2 # Factor by which all arrows have their velocity multiplied by
+DisableArrowGravity: true # Disables the normal arrow gravity so they fire more straight
+EnablePlayerArrowBehavior: false #Enables whether arrows fired from players act the same as dispensers
 
 # TNT Tracers
 TracerRateTicks: 5.0 # Rate at which tracers are spawned on the path of flying TNT
@@ -75,11 +82,9 @@ EnableAntiRadar: false # Enable invisibility for craft pilots to nullify minimap
 EnableFireballPenetration: false # Randomly replace blocks with fire when they are struck by fireballs.
 UnderwaterFireballPenetration: false # Allow fireballs to damage flammable blocks underwater.
 AddFiresToHitbox: true # Add fires lit on the surface of a craft to its hitbox so they don't obstruct it.
-FireballSpeedFactor: 2 # Factor by which all fireball velocity is multiplied by
 
 # Arrow Behavior
 EnableArrowPenetration: false # Randomly break blocks when they are struck by arrows.
-UnderwaterArrowPenetration: false # Allow arrows to damage certain blocks underwater.
 
 # TNT Translocation Behavior
 ReImplementTNTTranslocation: false # Re-implement TNT translocation in 1.11+

@@ -82,7 +82,9 @@ public final class MovecraftCombat extends JavaPlugin {
         ContactExplosives.load(getConfig());
         DurabilityOverride.load(getConfig());
         FireballLifespan.load(getConfig());
+        ArrowLifespan.load(getConfig());
         FireballPenetration.load(getConfig());
+        ArrowPenetration.load(getConfig());
         ReImplementTNTTranslocation.load(getConfig());
         BlockBehaviorOverride.load(getConfig());
 
@@ -128,6 +130,12 @@ public final class MovecraftCombat extends JavaPlugin {
         getServer().getPluginManager().registerEvents(fireballLifespan, this);
         fireballLifespan.runTaskTimer(this, 0, 20); // Every 1 second
         getServer().getPluginManager().registerEvents(new FireballLifespan(), this);
+
+        var arrowLifespan = new ArrowLifespan();
+        getServer().getPluginManager().registerEvents(arrowLifespan, this);
+        arrowLifespan.runTaskTimer(this, 0, 20); // Every 1 second
+        getServer().getPluginManager().registerEvents(new ArrowLifespan(), this);
+
         getServer().getPluginManager().registerEvents(new FireballPenetration(), this);
         getServer().getPluginManager().registerEvents(new ArrowPenetration(), this);
         getServer().getPluginManager().registerEvents(new ReImplementTNTTranslocation(), this);

@@ -23,7 +23,7 @@ public class FireballLifespan extends BukkitRunnable implements Listener {
     public static void load(@NotNull FileConfiguration config) {
         FireballLifespan = config.getInt("FireballLifespan", 6);
         FireballLifespan *= 20 * 50; // Convert from seconds to milliseconds
-        FireballSpeedFactor = config.getInt("FireballSpeedFactor", 2);
+        FireballSpeedFactor = config.getInt("ArrowSpeedFactor", 2);
     }
 
     @Override
