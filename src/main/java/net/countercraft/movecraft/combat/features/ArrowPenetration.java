@@ -12,7 +12,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ArrowPenetration implements Listener {
-    public static boolean EnableArrowPenetration = true;
+    public static boolean EnableArrowPenetration = false;
     public static double resistancePercent = 90;
     public static boolean EnablePlayerArrowPenetration = false;
     public static boolean EnableMobArrowPenetration = false;
@@ -35,6 +35,7 @@ public class ArrowPenetration implements Listener {
             return;
 
         AbstractArrow arrow = (AbstractArrow) e.getEntity();
+
 
         if (arrow.getShooter() != null) {
             // Enables/Disables whether arrows fired from a player act the same as if fired from a dispenser

@@ -68,14 +68,6 @@ public class ArrowLifespan extends BukkitRunnable implements Listener {
             }
         }
 
-        /*
-        // Enables/Disables whether arrows fired from a player act the same as if fired from a dispenser
-        if (arrow.getShooter() instanceof Player) {
-            if (!EnablePlayerArrowLifespan)
-                return;
-        }
-         */
-
         // Gravity setting based on config
         arrow.setGravity(!DisableArrowGravity);
 
