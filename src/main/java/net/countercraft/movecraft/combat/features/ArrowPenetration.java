@@ -14,11 +14,11 @@ import org.jetbrains.annotations.NotNull;
 public class ArrowPenetration implements Listener {
     public static boolean EnableArrowPenetration = true;
     public static double resistancePercent = 90;
-    public static boolean EnablePlayerArrowBehavior = false;
+    public static boolean EnablePlayerArrowPenetration = false;
 
     public static void load(@NotNull FileConfiguration config) {
         EnableArrowPenetration = config.getBoolean("EnableArrowPenetration", false);
-        EnablePlayerArrowBehavior = config.getBoolean("EnablePlayerArrowBehavior", false);
+        EnablePlayerArrowPenetration = config.getBoolean("EnablePlayerArrowPenetration", false);
     }
 
 

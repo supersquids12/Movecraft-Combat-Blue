@@ -20,7 +20,8 @@ public class ArrowLifespan extends BukkitRunnable implements Listener {
     public static int ArrowLifespan = 0;
     public static int ArrowSpeedFactor = 1;
     public static boolean DisableArrowGravity = true;
-    public static boolean EnablePlayerArrowBehavior = false;
+    public static boolean EnablePlayerArrowLifespan = false;
+    public static boolean EnableMobArrowLifespan = false;
     private final Deque<AbstractArrow> queue = new LinkedList<>();
 
     public static void load(@NotNull FileConfiguration config) {
@@ -28,7 +29,8 @@ public class ArrowLifespan extends BukkitRunnable implements Listener {
         ArrowLifespan *= 20 * 50; // Convert from seconds to milliseconds
         ArrowSpeedFactor = config.getInt("ArrowSpeedFactor", 2);
         DisableArrowGravity = config.getBoolean("DisableArrowGravity", true);
-        EnablePlayerArrowBehavior = config.getBoolean("EnablePlayerArrowBehavior", false);
+        EnablePlayerArrowLifespan = config.getBoolean("EnablePlayerArrowBehavior", false);
+        EnableMobArrowLifespan = config.getBoolean("EnableMobArrowLifespan", false);
     }
 
     @Override
@@ -52,11 +54,27 @@ public class ArrowLifespan extends BukkitRunnable implements Listener {
         AbstractArrow arrow = (AbstractArrow) e.getEntity();
         arrow.setMetadata(METADATA_KEY, new FixedMetadataValue(MovecraftCombat.getInstance(), System.currentTimeMillis()));
 
+
+        if (arrow.getShooter() != null) {
+            // Enables/Disables whether arrows fired from a player act the same as if fired from a dispenser
+            if (arrow.getShooter() instanceof Player) {
+                if (!EnablePlayerArrowLifespan)
+                    return;
+            }
+
+            else {
+                if (!EnableMobArrowLifespan)
+                    return;
+            }
+        }
+
+        /*
         // Enables/Disables whether arrows fired from a player act the same as if fired from a dispenser
         if (arrow.getShooter() instanceof Player) {
-            if (!EnablePlayerArrowBehavior)
+            if (!EnablePlayerArrowLifespan)
                 return;
         }
+         */
 
         // Gravity setting based on config
         arrow.setGravity(!DisableArrowGravity);

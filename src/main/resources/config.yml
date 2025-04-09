@@ -46,7 +46,8 @@ FireballSpeedFactor: 2 # Factor by which all fireballs have their velocity multi
 ArrowLifespan: 6 # Lifespan of arrows in seconds
 ArrowSpeedFactor: 2 # Factor by which all arrows have their velocity multiplied by
 DisableArrowGravity: true # Disables the normal arrow gravity so they fire more straight
-EnablePlayerArrowBehavior: false #Enables whether arrows fired from players act the same as dispensers
+EnablePlayerArrowLifespan: false #Enables whether arrows fired from players act the same as dispensers
+EnableMobArrowLifespan: false #Enables whether arrows fired from mobs act the same as dispensers
 
 # TNT Tracers
 TracerRateTicks: 5.0 # Rate at which tracers are spawned on the path of flying TNT
@@ -85,6 +86,8 @@ AddFiresToHitbox: true # Add fires lit on the surface of a craft to its hitbox s
 
 # Arrow Behavior
 EnableArrowPenetration: false # Randomly break blocks when they are struck by arrows.
+EnablePlayerArrowPenetration: false #Enables whether arrows fired from players act the same as dispensers
+EnableMobArrowPenetration: false #Enables whether arrows fired from mobs act the same as dispensers
 
 # TNT Translocation Behavior
 ReImplementTNTTranslocation: false # Re-implement TNT translocation in 1.11+
