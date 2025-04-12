@@ -19,7 +19,6 @@ import net.countercraft.movecraft.combat.features.tracking.TNTTracking;
 import net.countercraft.movecraft.combat.listener.CraftCollisionExplosionListener;
 import net.countercraft.movecraft.combat.listener.ExplosionListener;
 import net.countercraft.movecraft.combat.localisation.I18nSupport;
-import net.countercraft.movecraft.util.ChatUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -32,7 +31,6 @@ public final class MovecraftCombat extends JavaPlugin {
         return instance;
     }
 
-    public static String ERROR_PREFIX;
 
     @Override
     public void onLoad() {
@@ -89,6 +87,7 @@ public final class MovecraftCombat extends JavaPlugin {
         ArrowPenetration.load(getConfig());
         ReImplementTNTTranslocation.load(getConfig());
         BlockBehaviorOverride.load(getConfig());
+        TNTPhysics.load(getConfig());
 
         // Register event translation listeners
         getServer().getPluginManager().registerEvents(new CraftCollisionExplosionListener(), this);
@@ -141,7 +140,7 @@ public final class MovecraftCombat extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FireballPenetration(), this);
         getServer().getPluginManager().registerEvents(new ArrowPenetration(), this);
         getServer().getPluginManager().registerEvents(new ReImplementTNTTranslocation(), this);
-
+        getServer().getPluginManager().registerEvents(new TNTPhysics(), this);
 
         // Register commands
         getCommand("tnttracersetting").setExecutor(new TNTTracerSettingCommand(playerManager));

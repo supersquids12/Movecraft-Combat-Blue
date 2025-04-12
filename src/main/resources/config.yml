@@ -92,6 +92,9 @@ EnableMobArrowPenetration: false #Enables whether arrows fired from mobs act the
 # TNT Translocation Behavior
 ReImplementTNTTranslocation: false # Re-implement TNT translocation in 1.11+
 
+# TNT Physics
+TNTKnockbackFactor: 1 # Factor by which TNT knockback is increased
+
 # Movement Tracers
 MovementTracers: false # Add particle tracers to the movement of crafts (note: the performance impact is untested!)
 SpecificParticle: COMPOSTER # Particle to use for specific movement tracer blocks.
