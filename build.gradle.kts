@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     api("org.jetbrains:annotations-java5:24.1.0")
-    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("net.countercraft:movecraft:+")
     compileOnly("it.unimi.dsi:fastutil:8.5.11")
 }
@@ -23,7 +23,7 @@ dependencies {
 group = "net.countercraft.movecraft.combat"
 version = "2.0.0_beta-6"
 description = "Movecraft-Combat"
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 tasks.jar {
     archiveBaseName.set("Movecraft-Combat")

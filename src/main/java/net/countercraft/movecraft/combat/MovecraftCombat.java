@@ -19,6 +19,7 @@ import net.countercraft.movecraft.combat.features.tracking.TNTTracking;
 import net.countercraft.movecraft.combat.listener.CraftCollisionExplosionListener;
 import net.countercraft.movecraft.combat.listener.ExplosionListener;
 import net.countercraft.movecraft.combat.localisation.I18nSupport;
+import net.countercraft.movecraft.util.ChatUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -31,6 +32,7 @@ public final class MovecraftCombat extends JavaPlugin {
         return instance;
     }
 
+    public static String ERROR_PREFIX;
 
     @Override
     public void onLoad() {
