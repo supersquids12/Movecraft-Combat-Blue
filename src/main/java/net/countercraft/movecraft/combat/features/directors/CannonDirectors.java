@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-import static net.countercraft.movecraft.util.ChatUtils.ERROR_PREFIX;
+import static net.countercraft.movecraft.util.ChatUtils.errorPrefix;
 
 public class CannonDirectors extends Directors implements Listener {
     public static final NamespacedKey ALLOW_CANNON_DIRECTOR_SIGN = new NamespacedKey("movecraft-combat", "allow_cannon_director_sign");
@@ -208,12 +208,12 @@ public class CannonDirectors extends Directors implements Listener {
 
         Player p = e.getPlayer();
         if (foundCraft == null) {
-            p.sendMessage(ERROR_PREFIX + " " + I18nSupport.getInternationalisedString("Sign - Must Be Part Of Craft"));
+            p.sendMessage(errorPrefix() + " " + I18nSupport.getInternationalisedString("Sign - Must Be Part Of Craft"));
             return;
         }
 
         if (!foundCraft.getType().getBoolProperty(ALLOW_CANNON_DIRECTOR_SIGN)) {
-            p.sendMessage(ERROR_PREFIX + " " + I18nSupport.getInternationalisedString("CannonDirector - Not Allowed On Craft"));
+            p.sendMessage(errorPrefix() + " " + I18nSupport.getInternationalisedString("CannonDirector - Not Allowed On Craft"));
             return;
         }
 

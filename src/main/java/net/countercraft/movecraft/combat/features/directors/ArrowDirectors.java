@@ -26,7 +26,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
-import static net.countercraft.movecraft.util.ChatUtils.ERROR_PREFIX;
+import static net.countercraft.movecraft.util.ChatUtils.errorPrefix;
 
 public class ArrowDirectors extends Directors implements Listener {
     public static final NamespacedKey ALLOW_ARROW_DIRECTOR_SIGN = new NamespacedKey("movecraft-combat", "allow_arrow_director_sign");
@@ -171,12 +171,12 @@ public class ArrowDirectors extends Directors implements Listener {
 
         Player p = e.getPlayer();
         if (foundCraft == null) {
-            p.sendMessage(ERROR_PREFIX + " " + I18nSupport.getInternationalisedString("Sign - Must Be Part Of Craft"));
+            p.sendMessage(errorPrefix() + " " + I18nSupport.getInternationalisedString("Sign - Must Be Part Of Craft"));
             return;
         }
 
         if (!foundCraft.getType().getBoolProperty(ALLOW_ARROW_DIRECTOR_SIGN)) {
-            p.sendMessage(ERROR_PREFIX + " " + I18nSupport.getInternationalisedString("ArrowDirector - Not Allowed On Craft"));
+            p.sendMessage(errorPrefix() + " " + I18nSupport.getInternationalisedString("ArrowDirector - Not Allowed On Craft"));
             return;
         }
 
