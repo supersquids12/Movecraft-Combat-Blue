@@ -87,7 +87,6 @@ public final class MovecraftCombat extends JavaPlugin {
         ArrowPenetration.load(getConfig());
         ReImplementTNTTranslocation.load(getConfig());
         BlockBehaviorOverride.load(getConfig());
-        TNTPhysics.load(getConfig());
 
         // Register event translation listeners
         getServer().getPluginManager().registerEvents(new CraftCollisionExplosionListener(), this);
@@ -140,7 +139,6 @@ public final class MovecraftCombat extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FireballPenetration(), this);
         getServer().getPluginManager().registerEvents(new ArrowPenetration(), this);
         getServer().getPluginManager().registerEvents(new ReImplementTNTTranslocation(), this);
-        getServer().getPluginManager().registerEvents(new TNTPhysics(), this);
 
         // Register commands
         getCommand("tnttracersetting").setExecutor(new TNTTracerSettingCommand(playerManager));
