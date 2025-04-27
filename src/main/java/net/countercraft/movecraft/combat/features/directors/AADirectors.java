@@ -11,10 +11,7 @@ import net.countercraft.movecraft.craft.PlayerCraft;
 import net.countercraft.movecraft.craft.type.CraftType;
 import net.countercraft.movecraft.craft.type.property.BooleanProperty;
 import net.countercraft.movecraft.util.MathUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -191,6 +188,14 @@ public class AADirectors extends Directors implements Listener {
             p.sendMessage(I18nSupport.getInternationalisedString("AADirector - No Longer Directing"));
             return;
         }
+
+        /*
+        // check if the player has an elytra on
+        if (p.getInventory().getChestplate().equals(Material.ELYTRA)) {
+            p.sendMessage(I18nSupport.getInternationalisedString("AADirector - Not Allowed To Direct While Wearing An Elytra"));
+            return;
+        }
+        */
 
         clearDirector(p);
         addDirector(foundCraft, p);

@@ -12,6 +12,7 @@ CannonDirectorDistance: 100 # Max range at which TNT will be redirected
 CannonDirectorRange: 120 # Max range at which it will direct to a block vs in the general direction
 
 # Directors
+DisableDirectorElytra: false # Disables the ability for players with elytras equipped to use directors
 DirectorTool: STICK # Material name for director control.
 TransparentBlocks: # List of MATERIAL_NAMES which are ignored for directing.  See https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html for a full list.
   - "#glass"
@@ -93,7 +94,6 @@ EnableMobArrowPenetration: false #Enables whether arrows fired from mobs act the
 ReImplementTNTTranslocation: false # Re-implement TNT translocation in 1.11+
 
 # TNT Physics
-TNTKnockbackFactor: 1 # Factor by which TNT knockback is increased
 
 # Movement Tracers
 MovementTracers: false # Add particle tracers to the movement of crafts (note: the performance impact is untested!)

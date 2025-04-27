@@ -17,7 +17,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.SmallFireball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -128,7 +127,7 @@ public class ArrowDirectors extends Directors implements Listener {
         else
             arrowVector.setZ(targetVector.getZ());
 
-        arrowVector = arrowVector.multiply(speed); // put the original speed(multiplied by 3) back in, but now along a different trajectory
+        arrowVector = arrowVector.multiply(speed); // put the original speed back in, but now along a different trajectory
 
         MathHelper.clampVectorModify(arrowVector);
 
