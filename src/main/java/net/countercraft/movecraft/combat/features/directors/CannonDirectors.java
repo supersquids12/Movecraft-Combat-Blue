@@ -44,6 +44,7 @@ import static net.countercraft.movecraft.util.ChatUtils.errorPrefix;
 public class CannonDirectors extends Directors implements Listener {
     public static final NamespacedKey ALLOW_CANNON_DIRECTOR_SIGN = new NamespacedKey("movecraft-combat", "allow_cannon_director_sign");
     private static final String HEADER = "Cannon Director";
+    private static boolean DisableDirectorElytra = false;
     public static int CannonDirectorDistance = 100;
     public static int CannonDirectorRange = 120;
     private final Object2DoubleOpenHashMap<TNTPrimed> tracking = new Object2DoubleOpenHashMap<>();
@@ -61,6 +62,7 @@ public class CannonDirectors extends Directors implements Listener {
     public static void load(@NotNull FileConfiguration config) {
         CannonDirectorDistance = config.getInt("CannonDirectorDistance", 100);
         CannonDirectorRange = config.getInt("CannonDirectorRange", 120);
+        DisableDirectorElytra = config.getBoolean("DisableDirectorElytra", false);
     }
 
     @Override
@@ -224,6 +226,16 @@ public class CannonDirectors extends Directors implements Listener {
             removeDirector(p);
             p.sendMessage(I18nSupport.getInternationalisedString("CannonDirector - No Longer Directing"));
             return;
+        }
+
+        // check if the player has an elytra on
+        if (DisableDirectorElytra) {
+            if (p.getInventory().getChestplate() != null) {
+                if (p.getInventory().getChestplate().getType().equals(Material.ELYTRA)) {
+                    p.sendMessage(I18nSupport.getInternationalisedString("CannonDirector - Not Allowed To Direct While Wearing An Elytra"));
+                    return;
+                }
+            }
         }
 
         clearDirector(p);

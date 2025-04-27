@@ -30,6 +30,7 @@ import static net.countercraft.movecraft.util.ChatUtils.errorPrefix;
 public class AADirectors extends Directors implements Listener {
     public static final NamespacedKey ALLOW_AA_DIRECTOR_SIGN = new NamespacedKey("movecraft-combat", "allow_aa_director_sign");
     private static final String HEADER = "AA Director";
+    private static boolean DisableDirectorElytra = false;
     public static int AADirectorDistance = 50;
     public static int AADirectorRange = 120;
     private long lastCheck = 0;
@@ -45,6 +46,7 @@ public class AADirectors extends Directors implements Listener {
     public static void load(@NotNull FileConfiguration config) {
         AADirectorDistance = config.getInt("AADirectorDistance", 50);
         AADirectorRange = config.getInt("AADirectorRange", 120);
+        DisableDirectorElytra = config.getBoolean("DisableDirectorElytra", false);
     }
 
     @Override
@@ -181,6 +183,7 @@ public class AADirectors extends Directors implements Listener {
         }
 
         if (action == Action.LEFT_CLICK_BLOCK) {
+            // if not a director, don't do anything
             if (!isDirector(p))
                 return;
 
@@ -189,13 +192,20 @@ public class AADirectors extends Directors implements Listener {
             return;
         }
 
-        /*
+
         // check if the player has an elytra on
-        if (p.getInventory().getChestplate().equals(Material.ELYTRA)) {
-            p.sendMessage(I18nSupport.getInternationalisedString("AADirector - Not Allowed To Direct While Wearing An Elytra"));
-            return;
+        if (DisableDirectorElytra) {
+
+            if (p.getInventory().getChestplate() != null) {
+                if (p.getInventory().getChestplate().getType().equals(Material.ELYTRA)) {
+                    p.sendMessage(I18nSupport.getInternationalisedString("AADirector - Not Allowed To Direct While Wearing An Elytra"));
+                    //if they're a director, remove em
+                    if (isDirector(p))
+                        removeDirector(p);
+                    return;
+                }
+            }
         }
-        */
 
         clearDirector(p);
         addDirector(foundCraft, p);
