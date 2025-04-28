@@ -194,7 +194,8 @@ public class ArrowDirectors extends Directors implements Listener {
         if (DisableDirectorElytra) {
             if (p.getInventory().getChestplate() != null) {
                 if (p.getInventory().getChestplate().getType().equals(Material.ELYTRA)) {
-                    p.sendMessage(I18nSupport.getInternationalisedString("ArrowDirector - Not Allowed To Direct While Wearing An Elytra"));
+                    p.sendMessage(I18nSupport.getInternationalisedString("ArrowDirector - No Elytra While Directing"));
+                    clearDirector(p);
                     return;
                 }
             }

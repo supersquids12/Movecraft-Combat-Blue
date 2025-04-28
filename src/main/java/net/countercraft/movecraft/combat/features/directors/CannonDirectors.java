@@ -232,7 +232,8 @@ public class CannonDirectors extends Directors implements Listener {
         if (DisableDirectorElytra) {
             if (p.getInventory().getChestplate() != null) {
                 if (p.getInventory().getChestplate().getType().equals(Material.ELYTRA)) {
-                    p.sendMessage(I18nSupport.getInternationalisedString("CannonDirector - Not Allowed To Direct While Wearing An Elytra"));
+                    p.sendMessage(I18nSupport.getInternationalisedString("CannonDirector - No Elytra While Directing"));
+                    clearDirector(p);
                     return;
                 }
             }

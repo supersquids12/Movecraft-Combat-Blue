@@ -23,21 +23,14 @@ public class DirectorElytraListener extends Directors implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void ElytraEquipEvent(@NotNull PlayerArmorChangeEvent e) {
         Player p = e.getPlayer();
-        p.sendMessage("Armor Event Proc Item: " + e.getNewItem().getType());
 
-        if (DisableDirectorElytra) {
-            if (e.getNewItem().getType().equals(Material.ELYTRA)) {
-                p.sendMessage("Yes You're wearing an Elytra");
-                if (!isDirector(p)) {
-                    p.sendMessage("You're not a director, whore.");
-                    return;
-                }
+        if (!DisableDirectorElytra)
+            return;
 
-                removeDirector(p);
-                p.sendMessage(I18nSupport.getInternationalisedString("Director - No Longer Directing"));
-                p.sendMessage(I18nSupport.getInternationalisedString("Director - Not Allowed To Direct While Wearing An Elytra"));
-
-            }
+        // If the player equips an elytra, remove their directors
+        if (e.getNewItem().getType().equals(Material.ELYTRA)) {
+            clearDirector(p);
+            p.sendMessage(I18nSupport.getInternationalisedString("Director - No Elytra While Directing"));
         }
     }
 

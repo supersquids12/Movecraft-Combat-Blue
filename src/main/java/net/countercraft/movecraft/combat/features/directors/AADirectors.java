@@ -195,17 +195,15 @@ public class AADirectors extends Directors implements Listener {
 
         // check if the player has an elytra on
         if (DisableDirectorElytra) {
-
             if (p.getInventory().getChestplate() != null) {
                 if (p.getInventory().getChestplate().getType().equals(Material.ELYTRA)) {
-                    p.sendMessage(I18nSupport.getInternationalisedString("AADirector - Not Allowed To Direct While Wearing An Elytra"));
-                    //if they're a director, remove em
-                    if (isDirector(p))
-                        removeDirector(p);
+                    p.sendMessage(I18nSupport.getInternationalisedString("AADirector - No Elytra While Directing"));
+                    clearDirector(p);
                     return;
                 }
             }
         }
+
 
         clearDirector(p);
         addDirector(foundCraft, p);
